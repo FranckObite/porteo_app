@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 
+
 class CardCarburant extends StatefulWidget {
-   CardCarburant({super.key,  required this.index, required this.mapChantier, required this.maMap,  required this.onPressed1, required this.onPressed2 });
+   CardCarburant({super.key,  required this.index, required this.mapChantier, required this.maMap,  required this.onPressed1, required this.onPressed2, });
   
   final List< Map<String, dynamic>> maMap;
   final int index;
+  
   final Map<String, int> mapChantier;
   final void Function(BuildContext)? onPressed1;
   void Function(BuildContext)? onPressed2;
@@ -18,6 +20,8 @@ class CardCarburant extends StatefulWidget {
 class _CardCarburantState extends State<CardCarburant> { 
   @override
   Widget build(BuildContext context) {
+    Iterable<String> values = widget.maMap.where((map) => map.containsKey("nomChantier")).map((map) => map["nomChantier"]!);
+    //Iterable<dynamic> keys = widget.maMap.expand((map) => map.values).toSet().toList();
     return  Slidable(
        
       startActionPane: ActionPane(
@@ -35,7 +39,7 @@ class _CardCarburantState extends State<CardCarburant> {
           borderRadius: BorderRadius.circular(10),
           
           )
-
+    
         ]),
         endActionPane: ActionPane(
         key:  ValueKey(widget.index),
@@ -50,19 +54,24 @@ class _CardCarburantState extends State<CardCarburant> {
           borderRadius: BorderRadius.circular(10),
           
           )
-
+    
         ]),
        
       child: Card(
         color: Colors.blue[600],
         elevation: 6,
         child: ListTile(
-          title: Text(widget.maMap[widget.index]["nomChantier"], style: const TextStyle( fontSize: 20,)),
-          //leading: Icon( ((int.parse(widget.maMap[widget.index]["qteCarburant"]) <= widget.mapChantier[widget.maMap[widget.index]["nomChantier"]]! ))? Icons.check_circle_sharp : Icons.close, color: ((int.parse(widget.maMap[widget.index]["qteCarburant"]) <= widget.mapChantier[widget.maMap[widget.index]["nomChantier"]]! ))? Colors.greenAccent: Colors.red, size: 40,),
-          //subtitle: Text( ((int.parse(widget.maMap[widget.index]["qteCarburant"]) <= widget.mapChantier[widget.maMap[widget.index]["nomChantier"]]! ))? "Conso normale: ${widget.maMap[widget.index]["qteCarburant"]}" : "Surconso de : ${int.parse(widget.maMap[widget.index]["qteCarburant"])- widget.mapChantier[widget.maMap[widget.index]["nomChantier"]]!}  L" , style: const TextStyle(color: Colors.white, fontSize: 16)),
+          
+          title: Text(widget.maMap[widget.index]["nomChantier"], style: const TextStyle( fontSize: 20, fontWeight: FontWeight.bold)),
+          leading: Icon( (int.parse(widget.maMap[widget.index]["qteCarburant"]) <= (widget.mapChantier[(values.toList()[widget.index]).replaceAll(" ", "")])!)? Icons.check_circle_sharp : Icons.close, color: ((int.parse(widget.maMap[widget.index]["qteCarburant"]) <= (widget.mapChantier[(values.toList()[widget.index]).replaceAll(" ", "")])!))? Colors.greenAccent: Colors.red, size: 40,),
+          subtitle: Text( ( ((int.parse(widget.maMap[widget.index]["qteCarburant"])) <= (widget.mapChantier[(values.toList()[widget.index]).replaceAll(" ", "")])!))? "Quantité de Carburant: ${widget.maMap[widget.index]["qteCarburant"]!} L" : "Quantité surconsommée : ${(int.parse(widget.maMap[widget.index]["qteCarburant"]!)) - widget.mapChantier[(values.toList()[widget.index]).replaceAll(" ", "")]! } L" , style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.bold)),
           trailing: Text((widget.maMap[widget.index]["createdAt"]).toString().substring(0,10), style: const TextStyle(color: Colors.yellow, fontSize: 17) ),
         )
       ),
     );
   }
 }
+
+/* 
+Text("${widget.mapChantier[(values.toList()[widget.index]).replaceAll(" ", "")]} L", style: const TextStyle( fontSize: 20, color: Colors.red))
+ */

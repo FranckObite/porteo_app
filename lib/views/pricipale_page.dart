@@ -82,6 +82,7 @@ class _PrincipalPageState extends State<PrincipalPage>  {
    
   @override
   Widget build(BuildContext context) {
+    
     return  Scaffold(
        appBar: AppBar(
         backgroundColor: Colors.blue[600],
@@ -116,25 +117,28 @@ class _PrincipalPageState extends State<PrincipalPage>  {
             ),
           const  SizedBox(height: 10,),
            Expanded ( 
+            
             // ignore: unrelated_type_equality_checks
-            child: (_journals.isEmpty)?  Image.asset('images/naData.png'):  SizedBox(
+            child: (_journals.isEmpty)?  Image.asset('images/naData.png')
+            :  SizedBox(
                     
                   child: ListView.separated(itemBuilder: (context, index){
-          
-            return CardCarburant(
-              
-             index: index, mapChantier: mapChantier, maMap: _journals, onPressed1: (BuildContext context) => _showShwoDialog(
+                          
+                            return CardCarburant(
+                              
+                             index: index, mapChantier: mapChantier, maMap: _journals, onPressed1: (BuildContext context) => _showShwoDialog(
                                 index, _journals[index]['nomChantier']), 
-                      onPressed2: (BuildContext context) => monBottomSheet(_journals[index]['id']) ,);
+                      onPressed2: (BuildContext context) => monBottomSheet(_journals[index]['id']),);
                   }, 
                   separatorBuilder: (context, index){
-            return  const Divider(color: Colors.white);
+                            return  const Divider(color: Colors.white);
                   }, itemCount: _journals.length  ,
-                ),
-          ),)
+                                ),
+                   ),)
           ],
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.yellow[600],
         onPressed: ()=> monBottomSheet( null), child: const Icon(Icons.add,),),
