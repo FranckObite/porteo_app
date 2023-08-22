@@ -12,8 +12,7 @@ class SQLHelper {
         id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
         nomChantier TEXT,
         qteCarburant TEXT,
-        dateEnregistrement, DATETIME,
-        
+        createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP 
       )
       """);
   }
