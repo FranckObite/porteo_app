@@ -289,8 +289,28 @@ class _PrincipalPageState extends State<PrincipalPage>  {
 
                       monButton(text: (id == null )? 'Ajouter' : 'Modifier', 
                       onPressed: () async {
-                      
-                         if (id == null) {
+
+                        if(nomChantier.text.isEmpty || quantiteCarburant.text.isEmpty){
+                          await showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: const Text('Attention!'),
+                                content: const Text('Veuillez svp raplir les champs'),
+                                actions: [
+                                  TextButton(
+                                   onPressed: () => Navigator.of(context).pop(),  child: const Text('OK'),
+                                  
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        }    
+                        
+                        else{
+
+                          if (id == null) {
                         await _addItem(nomChantier: nomChantier.text, quantiteCarburant: quantiteCarburant.text,);
                       } if  (id != null) {
                         await _updateItem(id);
@@ -303,6 +323,9 @@ class _PrincipalPageState extends State<PrincipalPage>  {
  
                          
                        Navigator.of(context).pop();
+
+                        }                  
+                        
                     },
                    
 

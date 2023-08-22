@@ -59,7 +59,7 @@ class _CardCarburantState extends State<CardCarburant> {
         child: ListTile(
           title: Text(widget.maMap[widget.index]["nomChantier"], style: const TextStyle( fontSize: 20,)),
           //leading: Icon( ((int.parse(widget.maMap[widget.index]["qteCarburant"]) <= widget.mapChantier[widget.maMap[widget.index]["nomChantier"]]! ))? Icons.check_circle_sharp : Icons.close, color: ((int.parse(widget.maMap[widget.index]["qteCarburant"]) <= widget.mapChantier[widget.maMap[widget.index]["nomChantier"]]! ))? Colors.greenAccent: Colors.red, size: 40,),
-          //subtitle: Text( ((int.parse(widget.maMap[widget.index]["qteCarburant"]) <= widget.mapChantier[widget.maMap[widget.index]["nomChantier"]]! ))? "Conso normale: ${widget.maMap[widget.index]["qteCarburant"]}" : "Surconso de: " , style: const TextStyle(color: Colors.white, fontSize: 16)),
+          //subtitle: Text( ((int.parse(widget.maMap[widget.index]["qteCarburant"]) <= widget.mapChantier[widget.maMap[widget.index]["nomChantier"]]! ))? "Conso normale: ${widget.maMap[widget.index]["qteCarburant"]}" : "Surconso de : ${int.parse(widget.maMap[widget.index]["qteCarburant"])- widget.mapChantier[widget.maMap[widget.index]["nomChantier"]]!}  L" , style: const TextStyle(color: Colors.white, fontSize: 16)),
           trailing: Text((widget.maMap[widget.index]["createdAt"]).toString().substring(0,10), style: const TextStyle(color: Colors.yellow, fontSize: 17) ),
         )
       ),
