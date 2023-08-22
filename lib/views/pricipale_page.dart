@@ -123,7 +123,9 @@ class _PrincipalPageState extends State<PrincipalPage>  {
           
             return CardCarburant(
               
-             index: index, mapChantier: mapChantier, maMap: _journals);
+             index: index, mapChantier: mapChantier, maMap: _journals, onPressed1: (BuildContext context) => _showShwoDialog(
+                                index, _journals[index]['nomChantier']), 
+                      onPressed2: (BuildContext context) => monBottomSheet(_journals[index]['id']) ,);
                   }, 
                   separatorBuilder: (context, index){
             return  const Divider(color: Colors.white);
@@ -186,7 +188,7 @@ class _PrincipalPageState extends State<PrincipalPage>  {
                         onPressed: () {
                           _deleteItem(_journals[index]['id'],
                               _journals[index]['nomChantier'],
-                              _journals[index]['quantiteCarburant'],
+                              _journals[index]['qteCarburant'],
                               
                               );
                           Navigator.of(context).pop();
