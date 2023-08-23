@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 
@@ -58,14 +59,22 @@ class _CardCarburantState extends State<CardCarburant> {
         ]),
        
       child: Card(
-        color: Colors.blue[600],
+        color:  Colors.blueGrey[900],
         elevation: 6,
         child: ListTile(
           
-          title: Text(widget.maMap[widget.index]["nomChantier"], style: const TextStyle( fontSize: 20, fontWeight: FontWeight.bold)),
-          leading: Icon( (int.parse(widget.maMap[widget.index]["qteCarburant"]) <= (widget.mapChantier[(values.toList()[widget.index]).replaceAll(" ", "")])!)? Icons.check_circle_sharp : Icons.close, color: ((int.parse(widget.maMap[widget.index]["qteCarburant"]) <= (widget.mapChantier[(values.toList()[widget.index]).replaceAll(" ", "")])!))? Colors.greenAccent: Colors.red, size: 40,),
-          subtitle: Text( ( ((int.parse(widget.maMap[widget.index]["qteCarburant"])) <= (widget.mapChantier[(values.toList()[widget.index]).replaceAll(" ", "")])!))? "Quantité de Carburant: ${widget.maMap[widget.index]["qteCarburant"]!} L" : "Quantité surconsommée : ${(int.parse(widget.maMap[widget.index]["qteCarburant"]!)) - widget.mapChantier[(values.toList()[widget.index]).replaceAll(" ", "")]! } L" , style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.bold)),
-          trailing: Text((widget.maMap[widget.index]["createdAt"]).toString().substring(0,10), style: const TextStyle(color: Colors.yellow, fontSize: 17) ),
+          title: Text(widget.maMap[widget.index]["nomChantier"], style: const TextStyle( fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
+          //leading: Icon( (int.parse(widget.maMap[widget.index]["qteCarburant"]) <= (widget.mapChantier[(values.toList()[widget.index]).replaceAll(" ", "")])!)? Icons.check_circle_sharp : Icons.close, color: ((int.parse(widget.maMap[widget.index]["qteCarburant"]) <= (widget.mapChantier[(values.toList()[widget.index]).replaceAll(" ", "")])!))? Colors.greenAccent: Colors.red, size: 40,),
+          subtitle: Text( (((int.parse(widget.maMap[widget.index]["qteCarburant"])) <= (widget.mapChantier[(values.toList()[widget.index]).replaceAll(" ", "")])!))? "Qté de Carburant: ${widget.maMap[widget.index]["qteCarburant"]!} L" : " Surconso de : ${int.parse(widget.maMap[widget.index]["qteCarburant"]!) - widget.mapChantier[(values.toList()[widget.index]).replaceAll(" ", "")]! } L" , style:  const TextStyle(color: Colors.white, fontWeight: FontWeight.normal ,fontSize: 16, )),
+            trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+
+              Text((widget.maMap[widget.index]["createdAt"]).toString().substring(0,10), style: const TextStyle(color: Colors.yellow, fontSize: 17) ),
+              const SizedBox(width: 5,),
+              Icon( (int.parse(widget.maMap[widget.index]["qteCarburant"]) <= (widget.mapChantier[(values.toList()[widget.index]).replaceAll(" ", "")])!)? Icons.arrow_upward : Icons.arrow_downward, color: ((int.parse(widget.maMap[widget.index]["qteCarburant"]) <= (widget.mapChantier[(values.toList()[widget.index]).replaceAll(" ", "")])!))? Colors.green: Colors.red, size: 40,),
+            ],
+          ),  
         )
       ),
     );

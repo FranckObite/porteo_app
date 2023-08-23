@@ -7,11 +7,12 @@ class MonTexfield extends StatelessWidget {
     required this.label,
     required this.icon,
     required this.controller,
-    required this.readOnly, this.onTap, 
+    required this.readOnly, this.onTap, required this.textInputType, 
   }) : super(key: key);
 
   final String label;
   final IconData icon;
+  final TextInputType? textInputType;
  
   final TextEditingController controller;
   final bool readOnly;
@@ -20,6 +21,7 @@ class MonTexfield extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      keyboardType: textInputType,
       onTap: onTap,
       readOnly: readOnly,
       controller: controller,

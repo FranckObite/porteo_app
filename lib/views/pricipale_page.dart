@@ -221,7 +221,7 @@ class _PrincipalPageState extends State<PrincipalPage>  {
      showModalBottomSheet (
           showDragHandle: true,
           backgroundColor: Colors.white,
-          barrierColor: Colors.deepPurpleAccent,
+          barrierColor: Colors.blue[600],
           isScrollControlled: true,
           isDismissible: false,
           context: context, builder: (_)=>        
@@ -271,8 +271,10 @@ class _PrincipalPageState extends State<PrincipalPage>  {
           setState(() {
           nomChantier.text = newValue;
           });
-                  },),
-                    MonTexfield(controller: quantiteCarburant, label: "Carburant Consomé", icon: Icons.local_gas_station_outlined, readOnly: false,),
+                  }, 
+                  textInputType: null),
+
+                    MonTexfield(controller: quantiteCarburant, label: "Carburant Consomé", icon: Icons.local_gas_station_outlined, readOnly: false, textInputType: TextInputType.number,),
                   
                     
                     const SizedBox(height:  60,),
@@ -294,7 +296,7 @@ class _PrincipalPageState extends State<PrincipalPage>  {
                       monButton(text: (id == null )? 'Ajouter' : 'Modifier', 
                       onPressed: () async {
 
-                        if(nomChantier.text.isEmpty || quantiteCarburant.text.isEmpty){
+                        if(nomChantier.text.isEmpty || quantiteCarburant.text.isEmpty || quantiteCarburant.text.contains(" ")){
                           await showDialog(
                             context: context,
                             builder: (BuildContext context) {
@@ -315,7 +317,7 @@ class _PrincipalPageState extends State<PrincipalPage>  {
                         else{
 
                           if (id == null) {
-                        await _addItem(nomChantier: nomChantier.text, quantiteCarburant: quantiteCarburant.text,);
+                        await _addItem(nomChantier: nomChantier.text, quantiteCarburant: quantiteCarburant.text.replaceAll(" ", ""),);
                       } if  (id != null) {
                         await _updateItem(id);
                       }
