@@ -300,7 +300,7 @@ class _PrincipalPageState extends State<PrincipalPage>  {
                             builder: (BuildContext context) {
                               return AlertDialog(
                                 title: const Text('Attention!'),
-                                content: const Text('Veuillez svp raplir les champs'),
+                                content: const Text('Veuillez svp renseiger conrrectement les champs'),
                                 actions: [
                                   TextButton(
                                    onPressed: () => Navigator.of(context).pop(),  child: const Text('OK'),
