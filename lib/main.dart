@@ -18,7 +18,7 @@ Future<void> main() async {
   // initialize the database
   Database database = await SQLHelper.db();
 
-  await Future.delayed(const Duration(seconds: 10));
+  await Future.delayed(const Duration(seconds: 5));
   FlutterNativeSplash.remove();
   
   runApp( MyApp(database));
@@ -42,6 +42,5 @@ class MyApp extends StatelessWidget {
     );
   }
 
-  
 }
 
