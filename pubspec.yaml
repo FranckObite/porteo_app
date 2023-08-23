@@ -52,7 +52,6 @@ flutter_native_splash:
   image_size: "200"
   
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

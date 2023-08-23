@@ -10,5 +10,4 @@ class ListeCarburant{
     "Bouaké": 1000,
     "M'Pouto": 1500
   };
-
 }
