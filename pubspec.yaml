@@ -40,6 +40,16 @@ dependencies:
   sqflite: ^2.3.0
   path_provider: ^2.1.0
   flutter_slidable: ^3.0.0
+  flutter_native_splash: ^2.3.2
+
+flutter_native_splash:
+  android: true
+  ios: true
+  web: false 
+
+  color: "#1E88E5"
+  image: "images/splashpng.png"
+
 
 dev_dependencies:
   flutter_test:

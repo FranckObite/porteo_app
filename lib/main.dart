@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -16,6 +17,9 @@ Future<void> main() async {
    WidgetsFlutterBinding.ensureInitialized();
   // initialize the database
   Database database = await SQLHelper.db();
+
+  await Future.delayed(const Duration(seconds: 10));
+  FlutterNativeSplash.remove();
   
   runApp( MyApp(database));
 }
